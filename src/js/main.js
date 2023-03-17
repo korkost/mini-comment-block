@@ -14,6 +14,11 @@ const feedbackArr = [];
 
 //добавить обьект
 dom.submitBtn.addEventListener('click', submitFeedback);
+dom.form.addEventListener('keydown', function (e) {
+    if (e.keyCode === 13) {
+        submitFeedback(e);
+    }
+})
 
 function submitFeedback(e) {
     const commentName = dom.userName.value;

@@ -48,27 +48,35 @@ iframe {
 }
 
 .favorite {
-    color: #e91b33;
+    color: #e9dddd;
     width: 35px;
     padding: 5px;
     font-size: 22px;
     margin-left: -8px;
     cursor: pointer;
-    i::hover {
-        cursor: pointer;
-    }
 }
 
 .delet {
     ._icon-bin {
+        font-size: 110%;
+        top: 0;
+        color: rgb(82, 183, 187);
+        right: 10px;
+        display: block;
+        width: 24px;
+        height: 24px;
         border: none;
         background: transparent;
-        background-color: #2e2e3d;
-        color: rgb(82, 183, 187);
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
         cursor: pointer;
     }
+    //     border: none;
+    //     background: transparent;
+    //     background-color: #2e2e3d;
+    //     color: rgb(82, 183, 187);
+    //     letter-spacing: 0.12em;
+    //     text-transform: uppercase;
+    //     cursor: pointer;
+    // }
 }
 
 .submit__btn {

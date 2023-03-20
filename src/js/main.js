@@ -4,15 +4,13 @@ const dom = {
     submitBtn: document.querySelector('.submit__btn'),
     userName: document.querySelector('#user'),
     userComment: document.querySelector('#comment'),
-    likeIcon: document.querySelector('.favorite'),
     localTime: document.querySelector('#date'),
-    commentsCont: document.querySelector('.comments__container'),
+    commentsForm: document.querySelector('.comments__container'),
     form: document.querySelector('#add-form')
 }
 
 const feedbackArr = [];
 
-//добавить обьект
 dom.submitBtn.addEventListener('click', submitFeedback);
 dom.form.addEventListener('keydown', function (e) {
     if (e.keyCode === 13) {
@@ -38,47 +36,6 @@ function submitFeedback(e) {
     }
     e.preventDefault();
 }
-
-function resetForm() {
-    dom.userName.value = '';
-    dom.userComment.value = '';
-    dom.localTime.value = '';
-}
-
-function addFeedback(item) {
-    const div = document.createElement('div');
-    div.classList = 'comment__card';
-    div.id = item.id;
-    div.innerHTML = `
-    <div class="comment__info">
-      <div class="comment__name">
-        <small class="nickname">${item.commentName}</small>
-        <span class="date">${item.time}</span>
-        <div class="delet">
-          <i class="_icon-bin"></i>
-        </div>
-      </div>
-      <p class="comment__body">
-      ${item.commenBody}
-      </p>
-      <div class="favorite">
-        <i class="far _icon-far"></i>
-      </div>
-    </div>
-    `
-    dom.commentsCont.insertAdjacentElement('beforeend', div);
-}
-
-// dom.likeIcon.addEventListener('click', comment)
-
-// function comment() {
-//     const like = dom.likeIcon;
-//     like.classList.toggle('liked')
-
-//     if (like.classList.contains('liked')) {
-//         likeIcon.
-//     }
-// }
 
 function formValidate() {
 
@@ -109,28 +66,57 @@ function formValidate() {
         if (input.value == '') {
             createError(input, 'Пожалуйста заполните поле');
             result = false;
-            console.log('пустое');
         }
     })
     return result;
 }
 
-// function deleteFeedback(id, feedbackArr) {
-//     feedbackArr.forEach((newFeedback, idx) => {
-//         if (newFeedback.id === id) {
-//             feedbackArr.splice(idx, 1)
-//             console.log(feedbackArr[idx])
-//         }
-//     })
-// }
+function resetForm() {
+    dom.userName.value = '';
+    dom.userComment.value = '';
+    dom.localTime.value = '';
+}
 
-// feedbackArr.onClick = (event) => {
-//     const target = event.target;
-//     const isDelEl = target.classList.contains('delet');
-//     if (isDelEl) {
-//         const feedback = target.parentElement;
-//         const id = feedback.getAttribute('id')
-//         deleteFeedback(id, feedback)
-//     }
-// }
+function addFeedback(item) {
+    console.dir(item)
+    const div = document.createElement('div');
+    div.classList = 'comment__card';
+    div.id = item.id;
+    div.innerHTML = `
+    <div id=${item.id} class="comment__info">
+      <div class="comment__name">
+        <small class="nickname">${item.commentName}</small>
+        <span class="date">${item.time}</span>
+        <div class="delet">
+          <i class="_icon-bin"></i>
+        </div>
+      </div>
+      <p class="comment__body">
+      ${item.commenBody}
+      </p>
+      <div class="favorite">
+        <i class="_icon-far"></i>
+      </div>
+    </div>`
+
+    dom.commentsForm.insertAdjacentElement('beforeend', div);
+}
+
+dom.commentsForm.addEventListener('click', function (event) {
+    const target = event.target;
+    const isDeletEl = target.parentNode.classList.contains('delet');
+    if (isDeletEl) {
+        const del = target.parentElement.parentElement.parentElement.parentElement
+        del.remove()
+    }
+})
+
+dom.commentsForm.addEventListener('click', function (event) {
+    const target = event.target;
+    const islikeEl = target.parentNode.classList.contains('favorite');
+    if (islikeEl) {
+        const color = target.childNodes
+        console.dir(color)
+    }
+})
 
